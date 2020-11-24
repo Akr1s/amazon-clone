@@ -1,0 +1,9 @@
+.paymentSuccesful__container {
+  max-width: 1200px;
+  width: 100%;
+  margin: o auto;
+  padding: 20px;
+}
+.paymentSuccesful__container > h2 {
+  text-align: center;
+}

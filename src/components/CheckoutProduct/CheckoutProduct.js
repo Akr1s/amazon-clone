@@ -31,6 +31,7 @@ const CheckoutProduct = forwardRef(
                 <p key={index}>★</p>
               ))}
           </div>
+
           <div className="checkoutProduct__quantityBox">
             <button
               className="checkoutProduct__quantityBtn"

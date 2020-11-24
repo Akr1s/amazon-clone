@@ -9,6 +9,7 @@ export const ACTIONS = {
   INCREASE_QUANTITY: "INCREASE_QUANTITY",
   DECREASE_QUANTITY: "DECREASE_QUANTITY",
   SET_USER: "SET_USER",
+  PAYMENT_SUCCESS: "PAYMENT_SUCCESS",
 };
 
 export const showBasketTotal = (basket) => {
@@ -16,6 +17,9 @@ export const showBasketTotal = (basket) => {
     (total, { price, quantity }) => +total + quantity * price,
     0
   );
+};
+export const showBasketLenght = (basket) => {
+  return basket?.reduce((total, { quantity }) => +total + +quantity, 0);
 };
 
 export const reducer = (state, action) => {
@@ -66,6 +70,8 @@ export const reducer = (state, action) => {
       };
     case ACTIONS.SET_USER:
       return { ...state, user: action.user };
+    case ACTIONS.PAYMENT_SUCCESS:
+      return { ...state, basket: [] };
     default:
       return state;
   }

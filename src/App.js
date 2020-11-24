@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import { auth } from "./database";
 import { useData } from "./contexts/StateProvider";
 import { ACTIONS } from "./contexts/reducer";
+import Payment from "./pages/Payment/Payment";
+import PaymentSuccesful from "./pages/PaymentSuccesful/PaymentSuccesful";
 
 function App() {
   const [{}, dispatch] = useData();
@@ -33,7 +35,15 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/" exact>
+          <Route path="/payment">
+            <Header />
+            <Payment />
+          </Route>
+          <Route path="/payment_succesful">
+            <Header />
+            <PaymentSuccesful />
+          </Route>
+          <Route path="/">
             <Header />
             <Home />
           </Route>
