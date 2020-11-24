@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Login.css";
 import { auth } from "../../database";
@@ -7,30 +7,69 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({});
+
+  const validateEmail = (value) => {
+    setEmail(value);
+
+    if (!value) {
+      setError((error) => ({ ...error, email: "Email is required" }));
+      return;
+    } else if (
+      !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        value
+      )
+    ) {
+      setError((error) => ({ ...error, email: "Email is incorect" }));
+      return;
+    }
+    setError((error) => ({ ...error, email: "" }));
+  };
+
+  const validatePassword = (value) => {
+    setPassword(value);
+
+    if (!value) {
+      setError((error) => ({ ...error, password: "Password is required" }));
+      return;
+    } else if (password.length < 5) {
+      setError((error) => ({ ...error, password: "Password is too short" }));
+      return;
+    }
+    setError((error) => ({ ...error, password: "" }));
+  };
+
+  useEffect(() => {
+    validateEmail(email);
+    validatePassword(password);
+  }, []);
 
   const signIn = (e) => {
     e.preventDefault();
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) {
-          history.push("/");
-        }
-      })
-      .catch((error) => alert(error.message));
+    if (!error.password.length && !error.email.length) {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((auth) => {
+          if (auth) {
+            history.push("/");
+          }
+        })
+        .catch((error) => alert(error.message));
+    }
   };
   const register = (e) => {
     e.preventDefault();
-
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) {
-          history.push("/");
-        }
-      })
-      .catch((error) => alert(error.message));
+    if (!error.password.length && !error.email.length) {
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((auth) => {
+          if (auth) {
+            history.push("/");
+          }
+        })
+        .catch((error) => alert(error.message));
+    }
   };
   return (
     <div className="login">
@@ -49,15 +88,17 @@ function Login() {
             type="text"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => validateEmail(e.target.value)}
           />
+          <div className="errorInField">{error.email}</div>
           <h5>Password</h5>
           <input
             type="password"
             name="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => validatePassword(e.target.value)}
           />
+          <div className="errorInField">{error.password}</div>
           <button
             type="submit"
             onClick={signIn}
