@@ -14,11 +14,12 @@
   object-fit: contain;
   max-height: 200px;
   margin-bottom: 15px;
+  height: 200px;
 }
 
 .product__info {
   height: 108px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .product__price {
