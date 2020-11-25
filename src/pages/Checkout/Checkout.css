@@ -23,3 +23,15 @@
 .checkout_empty > h3 {
   margin-top: 20px;
 }
+@media screen and (max-width: 900px) {
+  .checkout {
+    flex-direction: column;
+  }
+  .checkout__right {
+    order: -1;
+    width: 100%;
+  }
+  .checkout__ad {
+    display: none;
+  }
+}

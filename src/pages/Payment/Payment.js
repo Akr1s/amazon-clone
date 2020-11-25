@@ -32,7 +32,7 @@ function Payment() {
             <p>Los Angeles, CA</p>
           </div>
         </div>
-        <div className="payment__section">
+        <div className="payment__section section__rewiew">
           <div className="payment__title">
             <h3>Review items and delivery</h3>
           </div>

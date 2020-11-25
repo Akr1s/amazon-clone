@@ -16,9 +16,31 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 .home__products {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+@media screen and (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+  }
+  .header__search {
+    margin: 20px 0px;
+  }
+  .header__nav {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  .header__search {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .home__image {
+    margin-bottom: 0px;
+  }
 }

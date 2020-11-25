@@ -40,3 +40,9 @@
   display: block;
   margin-bottom: 0px;
 }
+@media screen and (max-width: 900px) {
+  .section__rewiew {
+    flex-direction: column;
+    align-items: center;
+  }
+}
