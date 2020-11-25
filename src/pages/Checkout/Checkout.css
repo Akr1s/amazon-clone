@@ -28,10 +28,19 @@
     flex-direction: column;
   }
   .checkout__right {
-    order: -1;
     width: 100%;
   }
   .checkout__ad {
     display: none;
+  }
+  .checkoutProduct__info > button {
+    padding: 12px 15px;
+    border-radius: 2px;
+  }
+  .checkoutProduct__quantityBtn {
+    padding: 10px 15px;
+  }
+  .checkoutProduct__quantityBtn:disabled {
+    padding: 10px 15px;
   }
 }

@@ -52,4 +52,8 @@
   .checkoutProduct__title {
     text-align: center;
   }
+  .product > button {
+    padding: 12px 15px;
+    border-radius: 2px;
+  }
 }
